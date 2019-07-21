@@ -38,7 +38,7 @@ app.post("/posts", (req, res) => {
 		title: req.body.title,
 		subtitle: req.body.subtitle,
 		content: req.body.content,
-		postNumner: req.body.postNumber,
+		postNumber: req.body.postNumber,
 		mainImg: req.body.mainImg
 	});
 
