@@ -7,15 +7,15 @@ const {mongoose} = require('./db/mongoose');
 const app = express();
 var port = process.env.PORT || 3100;
 
-// app.use((req, res, next) => {
-// 	res.header("Access-Control-Allow-Origin", "*");
-// 	res.header("Access-Control-Expose-Headers", "X-Auth");
-// 	res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization, x-auth");
-// 	if (req.method === 'OPTIONS') {
-// 		res.header('Access-Control-Allow-Methods', 'PUT, POST, PATCH, DELETE, GET');
-// 	}
-// 	next();
-// });
+app.use((req, res, next) => {
+	res.header("Access-Control-Allow-Origin", "*");
+	res.header("Access-Control-Expose-Headers", "X-Auth");
+	res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization, x-auth");
+	if (req.method === 'OPTIONS') {
+		res.header('Access-Control-Allow-Methods', 'PUT, POST, PATCH, DELETE, GET');
+	}
+	next();
+});
 
 app.use(bodyParser.json());
 
@@ -38,11 +38,20 @@ app.post("/posts", (req, res) => {
 		title: req.body.title,
 		subtitle: req.body.subtitle,
 		content: req.body.content,
-		writerId: req.body.id
+		postNumner: req.body.postNumber,
+		mainImg: req.body.mainImg
 	});
 
 	NewPost.save().then((doc) => {
 		res.send(doc);
+	});
+});
+
+app.delete("/posts", (req, res) => {
+	Post.remove().then(doc => {
+		res.send(doc);
+	}).catch(e => {
+		res.send(e);
 	});
 });
 

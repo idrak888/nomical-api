@@ -7,14 +7,18 @@ const Post = mongoose.model('Post', {
 		minlength: 1,
 		trim: true
     },
-    writerId: {
-        type: String,
+    postNumber: {
+        type: Number,
         required: true
     },
 	dateCreated: {
 		type: String,
 		required: true
-	},
+    },
+    mainImg: {
+        type: String,
+        required: true
+    },
 	title: {
 		type: String,
 		required: true,
