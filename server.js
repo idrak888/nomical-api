@@ -47,6 +47,16 @@ app.post("/posts", (req, res) => {
 	});
 });
 
+app.get('/posts/:limit', (req, res) => {
+	var limit = req.params.limit;
+
+	Post.find().limit(limit).then(doc => {
+		res.send(doc);
+	}).catch(e => {
+		res.send(e);
+	});
+});
+
 app.delete("/posts", (req, res) => {
 	Post.remove().then(doc => {
 		res.send(doc);
