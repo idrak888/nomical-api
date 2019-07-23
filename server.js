@@ -48,7 +48,7 @@ app.post("/posts", (req, res) => {
 });
 
 app.get('/posts/:limit', (req, res) => {
-	var limit = req.params.limit;
+	var limit = JSON.parse(req.params.limit);
 
 	Post.find().limit(limit).then(doc => {
 		res.send(doc);
