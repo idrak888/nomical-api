@@ -50,7 +50,7 @@ app.post("/posts", (req, res) => {
 app.get('/posts/:limit', (req, res) => {
 	var limit = JSON.parse(req.params.limit);
 
-	Post.find().limit(limit).then(doc => {
+	Post.find().sort({postNumber: -1}).limit(limit).then(doc => {
 		res.send(doc);
 	}).catch(e => {
 		res.send(e);
