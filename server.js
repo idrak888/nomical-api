@@ -24,7 +24,7 @@ app.get("/", (req, res) => {
 });
 
 app.get('/posts', (req, res) => {
-	Post.find().then(posts => {
+	Post.find().sort({postNumber: -1}).then(posts => {
         res.send(posts);
     }).catch(e => {
 		res.send(e);
