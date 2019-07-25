@@ -58,7 +58,7 @@ app.get('/posts/:limit', (req, res) => {
 });
 
 app.get('/post/:id', (req, res) => {
-	var id = JSON.parse(req.params.id);
+	var id = req.params.id;
 
 	Post.find({id}).then(doc => {
 		res.send(doc);
