@@ -75,6 +75,16 @@ app.delete("/posts", (req, res) => {
 	});
 });
 
+app.delete("/posts/:id", (req, res) => {
+	var _id = req.params.id;
+
+	Post.find({_id}).remove().then(doc => {
+		res.send(doc);
+	}).catch(e => {
+		res.send(e);
+	});
+});
+
 app.listen(port, () => {
     console.log(`Server started on port ${port}`);
 });
